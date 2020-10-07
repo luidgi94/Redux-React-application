@@ -10,57 +10,57 @@ const etatInitialStore = {
     { id: 'p6', title: 'XBOX SERIES X', price: 499.99 }
   ],
   cart: [],
-  myGithub: 'https://github.com/luidgi94',
+  myGithub: 'https://github.com/luidgi94/Redux-React-application'
   
 };
 
 const shopReducer = (state = etatInitialStore, action) => {
-  let updatedCart;
+  let miseAJourPanier;
   let updatedItemIndex;
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
-      updatedCart = [...state.cart];
-      updatedItemIndex = updatedCart.findIndex(
+      miseAJourPanier = [...state.cart];
+      updatedItemIndex = miseAJourPanier.findIndex(
         item => item.id === action.payload.id
       );
 
       if (updatedItemIndex < 0) {
-        updatedCart.push({ ...action.payload, quantity: 1 });
+        miseAJourPanier.push({ ...action.payload, quantity: 1 });
       } else {
         const updatedItem = {
-          ...updatedCart[updatedItemIndex]
+          ...miseAJourPanier[updatedItemIndex]
         };
         updatedItem.quantity++;
-        updatedCart[updatedItemIndex] = updatedItem;
+        miseAJourPanier[updatedItemIndex] = updatedItem;
       }
-      return { ...state, cart: updatedCart };
+      return { ...state, cart: miseAJourPanier };
     case REMOVE_PRODUCT_FROM_CART:
-      updatedCart = [...state.cart]; // correspond à initialState.card
-      updatedItemIndex = updatedCart.findIndex(
+      miseAJourPanier = [...state.cart]; // correspond à initialState.card
+      updatedItemIndex = miseAJourPanier.findIndex(
         item => item.id === action.payload
       );
       const updatedItem = {
-        ...updatedCart[updatedItemIndex]
+        ...miseAJourPanier[updatedItemIndex]
       };
       updatedItem.quantity--;
       if (updatedItem.quantity <= 0) {
-        updatedCart.splice(updatedItemIndex, 1);
+        miseAJourPanier.splice(updatedItemIndex, 1);
       } else {
-        updatedCart[updatedItemIndex] = updatedItem;
+        miseAJourPanier[updatedItemIndex] = updatedItem;
       }
-      return { ...state, cart: updatedCart };
+      return { ...state, cart: miseAJourPanier };
       
     case ADD_PRODUCT_FROM_CART:
-      updatedCart = [...state.cart]; // correspond à initialState.card
-      updatedItemIndex = updatedCart.findIndex(
+      miseAJourPanier = [...state.cart]; // correspond à initialState.card
+      updatedItemIndex = miseAJourPanier.findIndex(
         item => item.id === action.payload
       );
       const updatedItemC = {
-        ...updatedCart[updatedItemIndex]
+        ...miseAJourPanier[updatedItemIndex]
       };
       updatedItemC.quantity++;
-      updatedCart[updatedItemIndex] = updatedItemC;
-      return { ...state, cart: updatedCart };
+      miseAJourPanier[updatedItemIndex] = updatedItemC;
+      return { ...state, cart: miseAJourPanier };
       
     default:
       return state;
