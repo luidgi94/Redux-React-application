@@ -1,0 +1,23 @@
+.products {
+  width: 50rem;
+  max-width: 90%;
+  margin: 2rem auto;
+}
+
+.products ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.products li {
+  padding: 1rem;
+  margin: 0.2rem 0;
+  border: 4px solid #3d2b05;
+  border-radius: 5px;
+  background-color: #98afc8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
