@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import MainNavigation from '../components/MainNavigation';
@@ -29,25 +29,24 @@ import Particles from "react-particles-js";
   }
 }; 
 
-class ProductsPage extends Component {
+const ProductsPage = (props)=> {
   
-  render() {
     return (
       <React.Fragment>
         
-        <MainNavigation   gitHub= {this.props.github} cartItemNumber={this.props.cartItemCount} />
+        <MainNavigation  prixTotal = {props.prixTotal} gitHub= {props.github} cartItemNumber={props.cartItemCount} />
 
         <main className="products">
           <h1 style={{color: "white"}} >LISTE DES PRODUITS :</h1>
           <ul>
-            {this.props.products.map(product => (
+            {props.products.map(product => (
               <li key={product.id}>
                 <div>
                   <strong>{product.title}</strong> - {product.price} €
                 </div>
                 <div>
                   <button
-                    onClick={this.props.addProductToCart.bind(this, product)}
+                    onClick={()=>props.addProductToCart(product)}
                   >
                     Ajouter au Panier
                   </button>
@@ -59,11 +58,12 @@ class ProductsPage extends Component {
         <Particles className="mi-home-particle" params={paramConfig} />
       </React.Fragment>
     );
-  }
+  
 }
 
 const mapStateToProps = state => {    // Lecture du state du reducer
   return {
+    prixTotal: state.Total,
     github: state.myGithub,
     products: state.products,
     cartItemCount: state.cart.reduce((count, curItem) => {

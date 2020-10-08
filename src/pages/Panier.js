@@ -1,20 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import MainNavigation from '../components/MainNavigation';
 import { removeProductFromCart, addProductFromCart  } from '../store/actions';
 import './Panier.css';
 
-class CartPage extends Component {
-  render() {
+const CartPage =(props)=> {
+ 
+  // let Total = ()=>{
+  //   // console.log( props.cartItems);
+  //   let total = 0;
+  //   if (props.cartItems){
+  //     props.cartItems.foreach(produit => total += produit.price * produit.quantity);
+  //   }
+
+  //    props.cartItems.map(produit => total += produit.price * produit.quantity);
+  //    return total;
+  // }
     return (
       <React.Fragment>
-        <MainNavigation  gitHub= {this.props.github} cartItemNumber={this.props.cartItemCount} />
+        <MainNavigation  prixTotal = {props.prixTotal}  gitHub= {props.github} cartItemNumber={props.cartItemCount} />
         <main className="cart">
         <h1 style={{color: "white"}} >VOTRE PANIER:</h1>
-          {this.props.cartItems.length <= 0 && <p style={{color: "white"}} > => Votre panier est vide...</p>}
+          {props.cartItems.length <= 0 && <p style={{color: "white"}} > => Votre panier est vide...</p>}
           <ul>
-            {this.props.cartItems.map(cartItem => (
+            {props.cartItems.map(cartItem => (
               <li key={cartItem.id}>
                 <div>
                   <strong>{cartItem.title}</strong> - {cartItem.price} € (
@@ -22,14 +32,13 @@ class CartPage extends Component {
                 </div>
                 <div>
                 <button className="cardButton"
-                    onClick={this.props.addProductFromCart.bind(this, cartItem.id)}
+                    onClick={()=>props.addProductFromCart( cartItem.id)}
                   >
                     +
                   </button>
                   
                   <button className="cardButton"
-                    onClick={this.props.removeProductFromCart.bind(
-                      this,
+                    onClick={ ()=> props.removeProductFromCart(
                       cartItem.id
                     )}
                   >
@@ -39,19 +48,24 @@ class CartPage extends Component {
               </li>
             ))}
           </ul>
+          <div>
+            <h2 style={{color: "yellow"}}> Total : {props.prixTotal} </h2>
+          </div>
         </main>
       </React.Fragment>
     );
-  }
+  
 }
 
 const mapStateToProps = state => {
   return {
+    prixTotal: state.Total,
     github: state.myGithub,
     cartItems: state.cart,
     cartItemCount: state.cart.reduce((count, curItem) => {
       return count + curItem.quantity;
-    }, 0)
+    }, 0),
+   
   };
 };
 

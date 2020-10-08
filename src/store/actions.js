@@ -1,8 +1,8 @@
-export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
+export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'; // Importation dans le reducer
 export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODCUT_FROM_CART';
 export const ADD_PRODUCT_FROM_CART = 'ADD_PRODUCT_FROM_CART';
 
-export const addProductToCart = product => {
+export const addProductToCart = product => {// Importation dans le le composant  
   return dispatch => {
     setTimeout(() => {
       dispatch({

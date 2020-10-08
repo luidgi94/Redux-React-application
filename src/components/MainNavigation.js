@@ -18,6 +18,8 @@ const mainNavigation = props => (
         <li>
           <NavLink to="/cart">Consultez votre panier ({props.cartItemNumber})</NavLink>
         </li>
+        <li style={{color:"yellow"}}> Total : {props.prixTotal} € </li>
+        
       </ul>
     </nav>
   </header>
