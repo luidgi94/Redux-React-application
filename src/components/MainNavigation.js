@@ -7,8 +7,9 @@ const mainNavigation = props => (
   <header className="main-navigation">
     <nav>
       <ul>
+      <li style={{color:"white"}}> Lien Github :</li>
         <li>
-          <a rel="noopener noreferrer" target="_blank" href={props.gitHub}>
+          <a rel="noopener noreferrer" target="_blank" href={props.gitHub}> 
             <LineIcon name="github"/>
           </a>
         </li>
